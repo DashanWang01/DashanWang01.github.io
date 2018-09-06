@@ -53,6 +53,72 @@ export default class Table extends Component {
     const routesProducts =
       category === 'Mag' ? magRoutesProducts : digRoutesProducts;
 
+    const mobile = (
+      <Grid divided>
+        <Grid.Row columns={1}>
+          <Grid.Column>
+            <Segment className="Header">
+              <Header size="medium">
+                {category} DNS{' '}
+                <Button
+                  onClick={() => {
+                    this.openModal('dns');
+                  }}
+                  inverted
+                  color="green"
+                  floated="right"
+                  size="tiny"
+                >
+                  {' '}
+                  Add
+                </Button>
+                <AddModal type="dns" {...this.props} {...this.state} />
+              </Header>{' '}
+            </Segment>
+            <BootstrapTable
+              bordered={false}
+              keyField="id"
+              data={dnsProducts}
+              columns={dnsColumns}
+              filter={filterFactory()}
+              rowEvents={this.rowEvents}
+              pagination={paginationFactory({ hideSizePerPage: true })}
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row columns={1}>
+          <Grid.Column>
+            <Segment className="Header">
+              <Header size="medium">
+                {category} Routes{' '}
+                <Button
+                  onClick={() => {
+                    this.openModal('routes');
+                  }}
+                  inverted
+                  color="green"
+                  floated="right"
+                  size="tiny"
+                >
+                  Add
+                </Button>
+                <AddModal type="routes" {...this.props} {...this.state} />
+              </Header>{' '}
+            </Segment>
+            <BootstrapTable
+              bordered={false}
+              keyField="id"
+              data={routesProducts}
+              columns={routesColumns}
+              filter={filterFactory()}
+              rowEvents={rowEvents}
+              pagination={paginationFactory({ hideSizePerPage: true })}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
+
     const Landscape = (
       <Grid divided>
         <Grid.Row columns={2}>
@@ -124,8 +190,8 @@ export default class Table extends Component {
         </MediaQuery>
 
         <MediaQuery query="(orientation: portrait)">
-          <MediaQuery minDeviceWidth={420}>{Landscape}</MediaQuery>
-          <MediaQuery maxDeviceWidth={420}>{Landscape}</MediaQuery>
+          <MediaQuery minDeviceWidth={700}>{Landscape}</MediaQuery>
+          <MediaQuery maxDeviceWidth={700}>{mobile}</MediaQuery>
         </MediaQuery>
       </div>
     );

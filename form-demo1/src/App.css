@@ -31,19 +31,13 @@
   bottom: auto !important;
 }
 
-@media screen and (min-width: 400px) {
-  .id-custom-cell {
-    font-size: 0.4em;
-  }
-}
-
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 200px) {
   .id-custom-cell {
     font-size: 0.6em;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 900px) {
   .id-custom-cell {
     font-size: 0.8em;
   }

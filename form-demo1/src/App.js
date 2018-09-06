@@ -21,21 +21,33 @@ class App extends Component {
           text: 'Name Server',
           sort: true,
           filter: textFilter(),
-          classes: 'id-custom-cell'
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
         },
         {
           dataField: 'pod',
           text: 'Pod Name',
           sort: true,
           filter: textFilter(),
-          classes: 'id-custom-cell'
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
         },
         {
           dataField: 'domain',
           text: 'Domain',
           filter: textFilter(),
-          classes: 'id-custom-cell'
-        }
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
+        },
       ],
       routesColumns: [
         {
@@ -43,40 +55,56 @@ class App extends Component {
           text: 'Destination IP',
           sort: true,
           filter: textFilter(),
-          classes: 'id-custom-cell'
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
         },
         {
           dataField: 'gateway',
           text: 'Gateway',
           sort: true,
           filter: textFilter(),
-          classes: 'id-custom-cell'
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
         },
         {
           dataField: 'subnet',
           text: 'Subnet Mask',
           sort: true,
           filter: textFilter(),
-          classes: 'id-custom-cell'
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
         },
         {
           dataField: 'actions',
           text: 'Actions',
           filter: textFilter(),
-          classes: 'id-custom-cell'
-        }
+          classes: 'id-custom-cell',
+          headerStyle: {
+            borderBottom: '2px solid #c1c1c1',
+            borderTop: '2px solid #c1c1c1',
+          },
+        },
       ],
       digDnsProducts: [
         {
           server: '10.2.1.2',
           pod: 'Dig',
-          domain: ''
+          domain: '',
         },
         {
           server: '14.32.45.2',
           pod: 'Dig',
-          domain: ''
-        }
+          domain: '',
+        },
       ],
       digRoutesProducts: [
         {
@@ -90,10 +118,11 @@ class App extends Component {
               }}
               size="mini"
               basic
-              color="grey">
+              color="grey"
+            >
               delete
             </Button>
-          )
+          ),
         },
         {
           ip: '0.0.0.1',
@@ -106,23 +135,24 @@ class App extends Component {
               }}
               size="mini"
               basic
-              color="grey">
+              color="grey"
+            >
               delete
             </Button>
-          )
-        }
+          ),
+        },
       ],
       magDnsProducts: [
         {
           server: '66.6.6.6',
           pod: 'Dig',
-          domain: ''
+          domain: '',
         },
         {
           server: '21.21.21.3',
           pod: 'Dig',
-          domain: ''
-        }
+          domain: '',
+        },
       ],
       magRoutesProducts: [
         {
@@ -136,10 +166,11 @@ class App extends Component {
               }}
               size="mini"
               basic
-              color="grey">
+              color="grey"
+            >
               delete
             </Button>
-          )
+          ),
         },
         {
           ip: '2.2.2.2',
@@ -152,15 +183,16 @@ class App extends Component {
               }}
               size="mini"
               basic
-              color="grey">
+              color="grey"
+            >
               delete
             </Button>
-          )
-        }
+          ),
+        },
       ],
       setAppState: this.setAppState,
       removeAppData: this.removeAppData,
-      addAppData: this.addAppData
+      addAppData: this.addAppData,
     };
   }
 

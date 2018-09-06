@@ -11,7 +11,7 @@ class AddModal extends Component {
       domain: '',
       ip: '',
       gateway: '',
-      subnet: ''
+      subnet: '',
     };
   }
 
@@ -27,7 +27,7 @@ class AddModal extends Component {
               ? server.match(regex)[0]
               : null,
         pod,
-        domain
+        domain,
       };
     } else {
       return {
@@ -43,7 +43,7 @@ class AddModal extends Component {
             ? ''
             : subnet.match(regex)
               ? subnet.match(regex)[0]
-              : null
+              : null,
       };
     }
   };
@@ -56,7 +56,7 @@ class AddModal extends Component {
       newData = {
         server,
         pod,
-        domain
+        domain,
       };
     } else {
       newData = {
@@ -67,7 +67,7 @@ class AddModal extends Component {
           <Button size="mini" basic color="grey">
             delete
           </Button>
-        )
+        ),
       };
     }
 
@@ -102,6 +102,7 @@ class AddModal extends Component {
     if (type === 'dns') {
       return (
         <Modal open={open === 'dns'} onClose={this.close} centered={false}>
+          <Modal.Header>Input new data</Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Group widths="equal">

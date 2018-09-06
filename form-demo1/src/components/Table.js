@@ -12,7 +12,7 @@ export default class Table extends Component {
       delete: false,
       open: false,
       setTableState: this.setTableState,
-      rowEvents: {}
+      rowEvents: {},
     };
   }
 
@@ -32,8 +32,8 @@ export default class Table extends Component {
           if (e.target.innerHTML === 'delete') {
             removeAppData(category, 'routes', rowIndex);
           }
-        }
-      }
+        },
+      },
     });
   }
 
@@ -45,7 +45,7 @@ export default class Table extends Component {
       digRoutesProducts,
       magRoutesProducts,
       dnsColumns,
-      routesColumns
+      routesColumns,
     } = this.props;
     const { rowEvents } = this.state;
     const dnsProducts = category === 'Dig' ? digDnsProducts : magDnsProducts;
@@ -65,7 +65,8 @@ export default class Table extends Component {
                   inverted
                   color="green"
                   floated="right"
-                  size="tiny">
+                  size="tiny"
+                >
                   {' '}
                   Add
                 </Button>
@@ -73,12 +74,13 @@ export default class Table extends Component {
               </Header>{' '}
             </Segment>
             <BootstrapTable
+              bordered={false}
               keyField="id"
               data={dnsProducts}
               columns={dnsColumns}
               filter={filterFactory()}
               rowEvents={this.rowEvents}
-              pagination={paginationFactory()}
+              pagination={paginationFactory({ hideSizePerPage: true })}
             />
           </Grid.Column>
           <Grid.Column>
@@ -92,19 +94,21 @@ export default class Table extends Component {
                   inverted
                   color="green"
                   floated="right"
-                  size="tiny">
+                  size="tiny"
+                >
                   Add
                 </Button>
                 <AddModal type="routes" {...this.props} {...this.state} />
               </Header>{' '}
             </Segment>
             <BootstrapTable
+              bordered={false}
               keyField="id"
               data={routesProducts}
               columns={routesColumns}
               filter={filterFactory()}
               rowEvents={rowEvents}
-              pagination={paginationFactory()}
+              pagination={paginationFactory({ hideSizePerPage: true })}
             />
           </Grid.Column>
         </Grid.Row>

@@ -102,6 +102,7 @@ class AddModal extends Component {
       ip: '',
       gateway: '',
       subnet: '',
+      invalid: [],
     });
   };
 
@@ -110,6 +111,7 @@ class AddModal extends Component {
   };
 
   close = () => {
+    this.setState({ invalid: [] });
     this.props.setTableState({ open: false });
   };
   render() {

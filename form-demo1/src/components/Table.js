@@ -11,12 +11,8 @@ export default class Table extends Component {
     this.state = {
       delete: false,
       open: false,
-      setTableState: this.setTableState
-    };
-    this.rowEvents = {
-      onClick: (e, row, rowIndex) => {
-        console.log(e.target, row, rowIndex);
-      }
+      setTableState: this.setTableState,
+      rowEvents: {}
     };
   }
 
@@ -28,6 +24,19 @@ export default class Table extends Component {
     if (this.state[key] !== newState[key]) this.setState(newState);
   };
 
+  componentDidMount() {
+    this.setState({
+      rowEvents: {
+        onClick: (e, row, rowIndex) => {
+          const { category, type, removeAppData, setAppState } = this.props;
+          if (e.target.innerHTML === 'delete') {
+            removeAppData(category, 'routes', rowIndex);
+          }
+        }
+      }
+    });
+  }
+
   render() {
     const {
       category,
@@ -38,7 +47,7 @@ export default class Table extends Component {
       dnsColumns,
       routesColumns
     } = this.props;
-
+    const { rowEvents } = this.state;
     const dnsProducts = category === 'Dig' ? digDnsProducts : magDnsProducts;
     const routesProducts =
       category === 'Mag' ? magRoutesProducts : digRoutesProducts;
@@ -95,7 +104,7 @@ export default class Table extends Component {
               data={routesProducts}
               columns={routesColumns}
               filter={filterFactory()}
-              rowEvents={this.rowEvents}
+              rowEvents={rowEvents}
               pagination={paginationFactory()}
             />
           </Grid.Column>

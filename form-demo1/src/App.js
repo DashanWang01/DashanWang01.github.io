@@ -20,18 +20,21 @@ class App extends Component {
           dataField: 'server',
           text: 'Name Server',
           sort: true,
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         },
         {
           dataField: 'pod',
           text: 'Pod Name',
           sort: true,
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         },
         {
           dataField: 'domain',
           text: 'Domain',
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         }
       ],
       routesColumns: [
@@ -39,23 +42,28 @@ class App extends Component {
           dataField: 'ip',
           text: 'Destination IP',
           sort: true,
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         },
         {
           dataField: 'gateway',
           text: 'Gateway',
           sort: true,
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         },
         {
           dataField: 'subnet',
           text: 'Subnet Mask',
           sort: true,
-          filter: textFilter()
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         },
         {
           dataField: 'actions',
-          text: 'Actions'
+          text: 'Actions',
+          filter: textFilter(),
+          classes: 'id-custom-cell'
         }
       ],
       digDnsProducts: [
@@ -161,7 +169,6 @@ class App extends Component {
   };
 
   removeAppData = (category, type, index, callback = () => {}) => {
-    console.log('@@@', type, category);
     if (type === 'dns') {
       if (category === 'Dig') {
         const temp = this.state.digDnsProducts;
@@ -177,8 +184,6 @@ class App extends Component {
       if (category === 'Dig') {
         const temp = this.state.digRoutesProducts;
         temp.splice(index, 1);
-
-        console.log(temp);
         this.setState({ digRoutesProducts: temp }, callback);
       } else {
         const temp = this.state.magRoutesProducts;

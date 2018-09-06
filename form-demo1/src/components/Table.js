@@ -55,8 +55,8 @@ export default class Table extends Component {
       <Grid divided>
         <Grid.Row columns={2}>
           <Grid.Column>
-            <Segment>
-              <Header size="large">
+            <Segment className="Header">
+              <Header size="medium">
                 {category} DNS{' '}
                 <Button
                   onClick={() => {
@@ -82,9 +82,8 @@ export default class Table extends Component {
             />
           </Grid.Column>
           <Grid.Column>
-            <Segment>
-              {' '}
-              <Header size="large">
+            <Segment className="Header">
+              <Header size="medium">
                 {category} Routes{' '}
                 <Button
                   onClick={() => {

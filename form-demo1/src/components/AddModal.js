@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Modal } from 'semantic-ui-react';
+import { Button, Form, Modal, Header } from 'semantic-ui-react';
 
 class AddModal extends Component {
   constructor(props) {
@@ -36,66 +36,70 @@ class AddModal extends Component {
         )
       };
     }
-    addAppData(newData);
+    addAppData(category, type, newData);
+    setTableState({ open: false });
   };
 
   handleChange = newState => {
+    console.log(newState);
     this.setState(newState);
   };
 
+  close = () => {
+    this.props.setTableState({ open: false });
+  };
   render() {
-    const { category, addAppData, type } = this.props;
+    const { category, addAppData, type, open } = this.props;
     if (type === 'dns') {
       return (
-        <Modal
-          trigger={
-            <Button inverted color="green" floated="right" size="tiny">
-              Add
-            </Button>
-          }>
+        <Modal open={open === 'dns'} onClose={this.close} centered={false}>
           <Modal.Content>
-            <Modal.Description>
-              <Form>
-                <Form.Group widths="equal">
-                  <Form.Input
-                    fluid
-                    label="Name Server"
-                    placeholder="Name Server"
-                    onChange={e => {
-                      this.handleChange({ server: e.target.value });
-                    }}
-                  />
-                  <Form.Input
-                    onChange={e => {
-                      this.handleChange({ pod: e.target.value });
-                    }}
-                    fluid
-                    label="Pod Name"
-                    placeholder="Pod Name"
-                  />
-                  <Form.Input
-                    onChange={e => {
-                      this.handleChange({ domain: e.target.value });
-                    }}
-                    fluid
-                    label="Domain"
-                    placeholder="Domain"
-                  />
-                </Form.Group>
-                <Form.Button onClick={this.handleClick()}>Add</Form.Button>
-              </Form>
-            </Modal.Description>
+            <Form>
+              <Form.Group widths="equal">
+                <Form.Input
+                  fluid
+                  label="Name Server"
+                  placeholder="Name Server"
+                  onChange={e => {
+                    this.handleChange({ server: e.target.value });
+                  }}
+                />
+                <Form.Input
+                  onChange={e => {
+                    this.handleChange({ pod: e.target.value });
+                  }}
+                  fluid
+                  label="Pod Name"
+                  placeholder="Pod Name"
+                />
+                <Form.Input
+                  onChange={e => {
+                    this.handleChange({ domain: e.target.value });
+                  }}
+                  fluid
+                  label="Domain"
+                  placeholder="Domain"
+                />
+              </Form.Group>
+              <Form.Button onClick={this.handleClick}>Add</Form.Button>
+            </Form>
           </Modal.Content>
+          {/* <Modal.Header>Select a Photo</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <Header>Default Profile Image</Header>
+              <p>
+                We've found the following gravatar image associated with your
+                e-mail address.
+              </p>
+              <p>Is it okay to use this photo?</p>
+            </Modal.Description>
+          </Modal.Content> */}
         </Modal>
       );
     } else {
       return (
-        <Modal
-          trigger={
-            <Button inverted color="green" floated="right" size="tiny">
-              Add
-            </Button>
-          }>
+        <Modal open={open === 'routes'} onClose={this.close} centered={false}>
           <Modal.Content>
             <Modal.Description>
               <Form>
@@ -125,7 +129,7 @@ class AddModal extends Component {
                     placeholder="Subnet Mask"
                   />
                 </Form.Group>
-                <Form.Button onClick={this.handleClick()}>Add</Form.Button>
+                <Form.Button onClick={this.handleClick}>Add</Form.Button>
               </Form>
             </Modal.Description>
           </Modal.Content>

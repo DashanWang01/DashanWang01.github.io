@@ -10,6 +10,7 @@ export default class Table extends Component {
     super(props);
     this.state = {
       delete: false,
+      open: false,
       setTableState: this.setTableState
     };
     this.rowEvents = {
@@ -19,8 +20,12 @@ export default class Table extends Component {
     };
   }
 
+  openModal = open => {
+    this.setState({ open });
+  };
   setTableState = newState => {
-    this.setTableState(newState);
+    const key = Object.keys(newState)[0];
+    if (this.state[key] !== newState[key]) this.setState(newState);
   };
 
   render() {
@@ -44,6 +49,17 @@ export default class Table extends Component {
             <Segment>
               <Header size="large">
                 {category} DNS{' '}
+                <Button
+                  onClick={() => {
+                    this.openModal('dns');
+                  }}
+                  inverted
+                  color="green"
+                  floated="right"
+                  size="tiny">
+                  {' '}
+                  Add
+                </Button>
                 <AddModal type="dns" {...this.props} {...this.state} />
               </Header>{' '}
             </Segment>
@@ -61,6 +77,16 @@ export default class Table extends Component {
               {' '}
               <Header size="large">
                 {category} Routes{' '}
+                <Button
+                  onClick={() => {
+                    this.openModal('routes');
+                  }}
+                  inverted
+                  color="green"
+                  floated="right"
+                  size="tiny">
+                  Add
+                </Button>
                 <AddModal type="routes" {...this.props} {...this.state} />
               </Header>{' '}
             </Segment>

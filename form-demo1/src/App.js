@@ -17,8 +17,8 @@ const dnsColumns = [
     filter: textFilter()
   },
   {
-    dataField: 'domin',
-    text: 'Domin',
+    dataField: 'domain',
+    text: 'Domain',
     filter: textFilter()
   }
 ];
@@ -27,12 +27,12 @@ const digDnsProducts = [
   {
     server: '10.2.1.2',
     pod: 'Dig',
-    domin: ''
+    domain: ''
   },
   {
     server: '14.32.45.2',
     pod: 'Dig',
-    domin: ''
+    domain: ''
   }
 ];
 
@@ -40,12 +40,12 @@ const magDnsProducts = [
   {
     server: '66.6.6.6',
     pod: 'Dig',
-    domin: ''
+    domain: ''
   },
   {
     server: '21.21.21.3',
     pod: 'Dig',
-    domin: ''
+    domain: ''
   }
 ];
 
@@ -177,9 +177,9 @@ class App extends Component {
         temp.push(newData);
         this.setState({ digDnsProducts: temp });
       } else {
-        const temp = this.state.digRoutesProducts;
+        const temp = this.state.magDnsProducts;
         temp.push(newData);
-        this.setState({ digRoutesProducts: temp });
+        this.setState({ magDnsProducts: temp });
       }
     } else if (type === 'routes') {
       newData['actions'] = (
@@ -187,13 +187,15 @@ class App extends Component {
           delete
         </Button>
       );
+
       if (category === 'Dig') {
-        const temp = this.state.magDnsProducts;
+        const temp = this.state.digRoutesProducts;
         temp.push(newData);
-        this.setState({ magDnsProducts: temp });
+        this.setState({ digRoutesProducts: temp });
       } else {
         const temp = this.state.magRoutesProducts;
         temp.push(newData);
+
         this.setState({ magRoutesProducts: temp });
       }
     }

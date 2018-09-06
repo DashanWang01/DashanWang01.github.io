@@ -35,8 +35,8 @@ class AddModal extends Component {
         gateway:
           gateway === ''
             ? ''
-            : gateway.match(regex)[0]
-              ? gateway.match(regex)
+            : gateway.match(regex)
+              ? gateway.match(regex)[0]
               : null,
         subnet:
           subnet === ''
@@ -53,12 +53,20 @@ class AddModal extends Component {
     const { server, pod, domain, ip, gateway, subnet } = this.validate();
     let newData = {};
     if (type === 'dns') {
+      if (server === '' && pod === '' && domain === '') {
+        setTableState({ open: false });
+        return;
+      }
       newData = {
         server,
         pod,
         domain,
       };
     } else {
+      if (ip === '' && gateway === '' && subnet === '') {
+        setTableState({ open: false });
+        return;
+      }
       newData = {
         ip,
         gateway,
@@ -87,6 +95,14 @@ class AddModal extends Component {
 
     addAppData(category, type, newData);
     setTableState({ open: false });
+    this.setState({
+      server: '',
+      pod: '',
+      domain: '',
+      ip: '',
+      gateway: '',
+      subnet: '',
+    });
   };
 
   handleChange = newState => {

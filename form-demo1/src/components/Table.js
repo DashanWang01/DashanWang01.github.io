@@ -3,6 +3,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import { Grid, Header, Button, Segment, Modal } from 'semantic-ui-react';
+import MediaQuery from 'react-responsive';
 import AddModal from './AddModal';
 
 export default class Table extends Component {
@@ -51,7 +52,8 @@ export default class Table extends Component {
     const dnsProducts = category === 'Dig' ? digDnsProducts : magDnsProducts;
     const routesProducts =
       category === 'Mag' ? magRoutesProducts : digRoutesProducts;
-    return (
+
+    const Landscape = (
       <Grid divided>
         <Grid.Row columns={2}>
           <Grid.Column>
@@ -113,6 +115,19 @@ export default class Table extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+    );
+    return (
+      <div>
+        <MediaQuery query="(orientation: landscape)">
+          <MediaQuery minDeviceWidth={820}>{Landscape}</MediaQuery>
+          <MediaQuery maxDeviceWidth={820}>{Landscape}</MediaQuery>
+        </MediaQuery>
+
+        <MediaQuery query="(orientation: portrait)">
+          <MediaQuery minDeviceWidth={420}>{Landscape}</MediaQuery>
+          <MediaQuery maxDeviceWidth={420}>{Landscape}</MediaQuery>
+        </MediaQuery>
+      </div>
     );
   }
 }
